@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Anggota OSIS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+
+    <header class="bg-indigo-700 text-white shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-white text-indigo-700 p-2.5 rounded-xl font-bold text-xl shadow">
+                    <i class="fa-solid fa-user-pen"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold">Portal Pendaftaran OSIS</h1>
+                    <p class="text-xs text-indigo-200">Formulir Penerimaan Calon Anggota Baru</p>
+                </div>
+            </div>
+            <a href="admin.html" target="_blank" class="text-xs bg-indigo-800 hover:bg-indigo-900 text-indigo-200 hover:text-white px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                <i class="fa-solid fa-user-shield"></i> Portal Admin
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-clipboard-list text-indigo-600"></i> Isilah Formulir Berikut
+                </h2>
+                <p class="text-slate-500 text-sm mt-1">Pastikan seluruh data dan jawaban diisi dengan jujur dan lengkap.</p>
+            </div>
+
+            <form id="form-pendaftaran" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                <!-- Data Diri -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Nama Lengkap <span class="text-rose-500">*</span></label>
+                        <input type="text" id="nama" required placeholder="Contoh: Ahmad Subagja" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Kelas <span class="text-rose-500">*</span></label>
+                        <input type="text" id="kelas" required placeholder="Contoh: X IPA 2 / XI IPS 1" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Nomor Telepon / WA <span class="text-rose-500">*</span></label>
+                        <input type="tel" id="telepon" required placeholder="081234567890" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm">
+                    </div>
+                </div>
+
+                <hr class="border-slate-100">
+
+                <!-- Pertanyaan Essai -->
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">1. Alasan Ingin Masuk OSIS <span class="text-rose-500">*</span></label>
+                        <textarea id="alasan" rows="3" required placeholder="Jelaskan motivasi utama Anda mendaftar..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">2. Kelebihan dan Kekurangan Diri <span class="text-rose-500">*</span></label>
+                        <textarea id="kelebihan_kekurangan" rows="3" required placeholder="Sebutkan potensi kelebihan diri serta aspek yang perlu diperbaiki..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">3. Harapan Jika Diterima Menjadi Anggota OSIS <span class="text-rose-500">*</span></label>
+                        <textarea id="harapan_diterima" rows="3" required placeholder="Kontribusi atau target pencapaian saat menjadi pengurus..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">4. Hal yang Ingin Dikembangkan dalam Diri Sendiri <span class="text-rose-500">*</span></label>
+                        <textarea id="pengembangan_diri" rows="3" required placeholder="Keterampilan/karakter diri yang ingin Anda tingkatkan..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-2">5. Harapan untuk OSIS di Sekolah <span class="text-rose-500">*</span></label>
+                        <textarea id="harapan_osis" rows="3" required placeholder="Cita-cita atau perubahan positif untuk kemajuan OSIS..." class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-slate-700 text-sm"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-indigo-600/20 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Kirim Pendaftaran
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Modal Sukses -->
+    <div id="modal-success" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center hidden px-4">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center space-y-4 shadow-xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">Berhasil Terkirim!</h3>
+            <p class="text-slate-600 text-sm">Data pendaftaran Anda telah tersimpan dan terhubung langsung ke sistem panitia.</p>
+            <button onclick="document.getElementById('modal-success').classList.add('hidden')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const pendaftarBaru = {
+                id: 'OSIS-' + Date.now(),
+                waktu: new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' }),
+                nama: document.getElementById('nama').value.trim(),
+                kelas: document.getElementById('kelas').value.trim(),
+                telepon: document.getElementById('telepon').value.trim(),
+                alasan: document.getElementById('alasan').value.trim(),
+                kelebihan_kekurangan: document.getElementById('kelebihan_kekurangan').value.trim(),
+                harapan_diterima: document.getElementById('harapan_diterima').value.trim(),
+                pengembangan_diri: document.getElementById('pengembangan_diri').value.trim(),
+                harapan_osis: document.getElementById('harapan_osis').value.trim()
+            };
+
+            const dataLama = JSON.parse(localStorage.getItem('osis_pendaftar_list') || '[]');
+            dataLama.unshift(pendaftarBaru);
+            localStorage.setItem('osis_pendaftar_list', JSON.stringify(dataLama));
+
+            document.getElementById('form-pendaftaran').reset();
+            document.getElementById('modal-success').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
